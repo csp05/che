@@ -1,12 +1,28 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true,
     "target": "es6",
-    "module": "commonjs"
+    "module": "commonjs",
+    "types" : [
+      "jquery",
+      "angular",
+      "angular-animate",
+      "angular-cookies",
+      "angular-material",
+      "angular-mocks",
+      "angular-resource",
+      "angular-route",
+      "jasmine",
+      "js-yaml",
+      "karma-jasmine",
+      "node",
+      "q",
+      "selenium-webdriver"
+    ]
   },
 
   "exclude": [
     "node_modules",
-    "bower_components",
     "target"
   ]
 

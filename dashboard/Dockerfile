@@ -19,10 +19,8 @@ RUN apt-get update && \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/*
 COPY package.json /dashboard/
-RUN cd /dashboard && npm install
-COPY bower.json /dashboard/
-RUN cd /dashboard && ./node_modules/.bin/bower install --allow-root
+RUN cd /dashboard && yarn install
 COPY . /dashboard/
-RUN cd /dashboard && npm run build && cd target/ && tar zcf /tmp/dashboard.tar.gz dist/
+RUN cd /dashboard && yarn run build && cd target/ && tar zcf /tmp/dashboard.tar.gz dist/
 
 CMD zcat /tmp/dashboard.tar.gz

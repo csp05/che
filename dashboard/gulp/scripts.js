@@ -15,6 +15,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var bootstrap = require('bootstrap-styl');
 
 var browserSync = require('browser-sync');
 var webpack = require('webpack-stream');
@@ -23,13 +24,72 @@ var $ = require('gulp-load-plugins')();
 
 function webpackWrapper(watch, test, callback) {
   var webpackOptions = {
-    resolve: { extensions: ['', '.ts'] },
+    context: __dirname,
+    resolve: { extensions: ['', '.ts', '.js', '.styl'] },
     watch: watch,
     module: {
-      preLoaders: [{ test: /\.ts$/, exclude: /node_modules/, loader: 'tslint-loader'}],
-      loaders: [{ test: /\.ts$/, exclude: /node_modules/, loaders: ['babel-loader', 'awesome-typescript-loader']}]
+/*      preLoaders: [
+        {
+          test: /\.ts$/,
+          exclude: /node_modules/,
+          loader: 'tslint-loader'
+        }
+          ],*/
+      loaders: [
+        {
+          test: /\.ts$/,
+          exclude: /node_modules/,
+          loaders: ['babel-loader', 'awesome-typescript-loader']
+        },
+        {
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader']
+        },
+        {
+          test: /\.styl$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            {
+              loader: 'stylus-loader?paths=node_modules/bootstrap-styl',
+              options: {
+                preferPathResolver: 'webpack',
+                use: [bootstrap()]
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(svg|woff|woff2|ttf|eot|ico)$/,
+          use: [
+            {
+              loader: 'file-loader'
+            }
+          ]
+        },
+        {
+          test: /\.html$/,
+          use: [
+            {
+              loader: 'ngtemplate-loader',
+              options: {
+                angular: true
+              }
+            },
+            {
+              loader: 'html-loader'
+            }
+          ]
+        }
+      ]
     },
-    output: { filename: 'index.module.js' }
+    output: { filename: 'index.module.js' },
+    node: {
+        fs: 'empty',
+        tls: 'empty',
+        bufferutil: 'empty',
+        'utf-8-validate': 'empty'
+    }
   };
 
   if(watch) {
@@ -53,7 +113,7 @@ function webpackWrapper(watch, test, callback) {
     }
   };
 
-  var sources = [ path.join(conf.paths.src, '/app/index.module.ts') ];
+  var sources = [ path.join(conf.paths.src, '/index.ts') ];
   if (test) {
     sources.push(path.join(conf.paths.src, '/{app,components}/**/*.spec.ts'));
   }

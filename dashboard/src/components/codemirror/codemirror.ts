@@ -11,7 +11,7 @@
  */
 'use strict';
 
-declare const uiCodemirrorDirective: any;
+// declare const uiCodemirrorDirective: any;
 
 export class CodeMirrorConstant {
 
@@ -33,7 +33,7 @@ export class CodeMirrorConstant {
         }
       }
     }).config(() => {
-      uiCodemirrorDirective.$inject = ['$timeout', 'udCodemirrorConfig']; // jshint ignore:line
+      // uiCodemirrorDirective.$inject = ['$timeout', 'udCodemirrorConfig']; // jshint ignore:line
     });
   }
 }

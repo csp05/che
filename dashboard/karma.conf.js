@@ -3,32 +3,14 @@
 var path = require('path');
 var conf = require('./gulp/conf');
 
-var _ = require('lodash');
-var wiredep = require('wiredep');
-
 var pathSrcHtml = [
   path.join(conf.paths.src, '/**/*.html')
 ];
 
-function listFiles() {
-  var wiredepOptions = _.extend({}, conf.wiredep, {
-    dependencies: true,
-    devDependencies: true
-  });
-
-  return wiredep(wiredepOptions).js
-    .concat([
-      // used to emulate Map for example
-      'node_modules/babel-polyfill/dist/polyfill.js',
-      path.join(conf.paths.tmp, '/serve/app/index.module.js'),
-    ])
-    .concat(pathSrcHtml);
-}
-
 module.exports = function(config) {
 
   var configuration = {
-    files: listFiles(),
+    files: [conf.paths.tmp + '/serve/app/index.module.js'],
 
     singleRun: true,
 

@@ -11,6 +11,42 @@
  */
 'use strict';
 
+const $ = require('jquery');
+const foo: any = window;
+foo.$ = $;
+foo.jQuery = $;
+foo.jsyaml = require('js-yaml');
+foo.angular = require('../../node_modules/angular');
+
+import * as angular from 'angular';
+
+import 'angular';
+import 'angular-animate';
+import 'angular-cookies';
+import 'angular-file-upload';
+import 'angular-touch';
+import 'angular-sanitize';
+import 'angular-resource';
+import 'angular-route';
+import 'codemirror';
+import 'angular-ui-bootstrap';
+import 'angular-ui-codemirror';
+import 'angular-aria';
+import 'angular-material';
+import 'angular-messages';
+import 'angular-moment';
+import 'angular-filter';
+import 'angular-dropdowns';
+import 'ng-lodash';
+import 'angular-dropdowns';
+import 'angular-uuid4';
+import 'angular-websocket';
+import 'js-yaml';
+import '../../node_modules/angular-ui-codemirror/src/ui-codemirror.js';
+import '../../node_modules/angular-gravatar/build/md5.min.js';
+import '../../node_modules/angular-gravatar/build/angular-gravatar.min.js';
+import '../../node_modules/js-yaml';
+
 import {Register} from '../components/utils/register';
 import {FactoryConfig} from './factories/factories-config';
 import {ComponentsConfig} from '../components/components-config';
@@ -43,7 +79,7 @@ import {ProfileConfig} from './profile/profile-config';
 // init module
 const initModule = angular.module('userDashboard', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ngRoute',
   'angular-websocket', 'ui.bootstrap', 'ui.codemirror', 'ngMaterial', 'ngMessages', 'angularMoment', 'angular.filter',
-  'ngDropdowns', 'ngLodash', 'angularCharts', 'uuid4', 'angularFileUpload', 'ui.gravatar']);
+  'ngDropdowns', 'ngLodash', 'uuid4', 'angularFileUpload', 'ui.gravatar']);
 
 window.name = 'NG_DEFER_BOOTSTRAP!';
 
